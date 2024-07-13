@@ -40,7 +40,7 @@ async function main() {
 };
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+app.set("docs", path.join(__dirname, "docs"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
