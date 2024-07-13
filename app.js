@@ -44,7 +44,8 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
-app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static(path.join(__dirname, "public")));
+
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
@@ -56,10 +57,10 @@ const store = MongoStore.create({
 
 store.on("error", () =>{
     console.log("ERROR in MONGO SESSION STORE!", err);
-})
+});
 
 const sessionOptions = {
-    store: store,
+    store,
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
