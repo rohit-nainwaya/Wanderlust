@@ -3,11 +3,11 @@ const ExpressError = require('../utils/ExpressError');
 
 module.exports.index = async (req, res) => {
     const allListings = await Listing.find({});
-    res.render("listings/index.ejs", { allListings });
+    res.render("docs/index.ejs", { allListings });
 };
 
 module.exports.renderNewForm = (req, res) => {
-    res.render("listings/new.ejs");
+    res.render("docs/new.ejs");
 };
 
 module.exports.showListing = async (req, res) => {
@@ -24,7 +24,7 @@ module.exports.showListing = async (req, res) => {
         res.redirect("/listings");
         throw new ExpressError("Listing not found", 404);
     }
-    res.render("listings/show.ejs", { listing });
+    res.render("docs/show.ejs", { listing });
 };
 
 module.exports.createListing = async (req, res, next) => {
@@ -50,7 +50,7 @@ module.exports.renderEditForm = async (req, res) => {
 
     let originalImageUrl = listing.image.url;
     originalImageUrl = originalImageUrl.replace("/upload", "/upload/w_250");
-    res.render("listings/edit.ejs", { listing, originalImageUrl });
+    res.render("docs/edit.ejs", { listing, originalImageUrl });
 };
 
 module.exports.updateListing = async (req, res) => {
